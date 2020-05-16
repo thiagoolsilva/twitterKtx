@@ -25,23 +25,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private fun configLogging(): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
-        val logging = HttpLoggingInterceptor()
-
-        logging.level = HttpLoggingInterceptor.Level.HEADERS
-        httpClient.addInterceptor(logging)
-
-        return httpClient.build()
-    }
-
-    private val retrofitClient = Retrofit.Builder()
+    internal val retrofitClient = Retrofit.Builder()
         .baseUrl(BuildConfig.TWITTER_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(configLogging())
         .build()
 
-    // need to be refactory
-    val clientService =  retrofitClient.create(ApiTwitterService::class.java)
+    /**
+     * Config logging level
+     */
+    private fun configLogging(): OkHttpClient {
+        val httpClient = OkHttpClient.Builder()
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            httpClient.addInterceptor(logging)
+        }
+
+        return httpClient.build()
+    }
 
 }

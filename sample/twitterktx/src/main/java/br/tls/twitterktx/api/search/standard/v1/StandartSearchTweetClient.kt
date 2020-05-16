@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.model
+package br.tls.twitterktx.api.search.standard.v1
 
+import br.tls.twitterktx.api.RetrofitBuilder.retrofitClient
+import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetApi
 
-data class Urls (
+object StandartSearchTweetClient {
 
-	val url : String,
-	val expanded_url : String,
-	val display_url : String,
-	val indices : List<Int>
-)
+    internal val searchTweetClient: StandartSearchTweetApi = retrofitClient.create(StandartSearchTweetApi::class.java)
+
+}

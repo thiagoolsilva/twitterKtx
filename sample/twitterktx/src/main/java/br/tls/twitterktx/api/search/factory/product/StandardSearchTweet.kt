@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api
+package br.tls.twitterktx.api.search.factory.product
 
-import br.tls.twitterktx.api.search.model.Twitter
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import br.tls.twitterktx.api.search.standard.v1.model.Twitter
 
-interface ApiTwitterService {
+interface StandardSearchTweet {
 
-    @Headers("Authorization:Bearer AAAAAAAAAAAAAAAAAAAAAIwgeAAAAAAAbIa2AfSgnm7JS60iaBTCIAiLXYo%3DvsbsOmA108kFII3HUNLOgyKlCBQbO216nSpLiFKaCVN6XxFRV2")
-    @GET("/1.1/search/tweets.json")
-    suspend fun searchTwitters(@Query("q") query: String): Twitter
+    /**
+     * Returns a collection of relevant Tweets matching a specified query.
+     * @param query A UTF-8, URL-encoded search query of 500 characters maximum, including operators. Queries may additionally be limited by complexity.
+     * @return twitter result
+     */
+    suspend fun searchTweet(query: String, params: List<Pair<String, String>>? = null): Twitter
 
 }

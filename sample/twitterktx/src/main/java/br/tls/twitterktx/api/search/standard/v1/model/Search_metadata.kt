@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-package br.tls.sample.di
+package br.tls.twitterktx.api.search.standard.v1.model
 
-import br.tls.sample.mainsample.FirstViewModel
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+data class Search_metadata (
 
-val simpleModule = module {
-
-    single {
-        StandartSearchTweetServiceImpl()
-    }
-
-    viewModel {
-        FirstViewModel(tweeterTweetServiceImplStandart = get())
-    }
-
-}
+	val completed_in : Double,
+	val max_id : Int,
+	val max_id_str : Int,
+	val next_results : String,
+	val query : String,
+	val refresh_url : String,
+	val count : Int,
+	val since_id : Int,
+	val since_id_str : Int
+)

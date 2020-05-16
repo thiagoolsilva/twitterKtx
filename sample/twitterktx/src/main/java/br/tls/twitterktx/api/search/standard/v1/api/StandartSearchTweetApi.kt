@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.model
+package br.tls.twitterktx.api.search.standard.v1.api
 
-data class Description (
+import br.tls.twitterktx.api.search.standard.v1.model.Twitter
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
 
-	val urls : List<String>
-)
+interface StandartSearchTweetApi {
+
+    @Headers("Authorization:Bearer AAAAAAAAAAAAAAAAAAAAAIwgeAAAAAAAbIa2AfSgnm7JS60iaBTCIAiLXYo%3DvsbsOmA108kFII3HUNLOgyKlCBQbO216nSpLiFKaCVN6XxFRV2")
+    @GET("/1.1/search/tweets.json")
+    suspend fun searchTwitters(@Query("q") query: String): Twitter
+
+}

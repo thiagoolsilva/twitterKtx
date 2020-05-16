@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.sample.di
+package br.tls.twitterktx.api.search.standard.v1.model
 
-import br.tls.sample.mainsample.FirstViewModel
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
-val simpleModule = module {
+data class Twitter (
 
-    single {
-        StandartSearchTweetServiceImpl()
-    }
-
-    viewModel {
-        FirstViewModel(tweeterTweetServiceImplStandart = get())
-    }
-
-}
+	val statuses : List<Statuses>
+//	val search_metadata : Search_metadata
+)

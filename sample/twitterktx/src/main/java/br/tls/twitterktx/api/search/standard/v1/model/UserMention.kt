@@ -14,18 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search
+package br.tls.twitterktx.api.search.standard.v1.model
 
-import br.tls.twitterktx.api.RetrofitBuilder
-import br.tls.twitterktx.api.search.model.Twitter
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-
-class SearchApi {
-
-    @ExperimentalCoroutinesApi
-    suspend fun searchTweeter(): Twitter {
-        val twitterService = RetrofitBuilder.clientService
-        return twitterService.searchTwitters("clube sport de recife")
-    }
-
-}
+data class UserMention (
+    val screen_name:String,
+    val name:String,
+    val id:Number,
+    val id_str:String
+)

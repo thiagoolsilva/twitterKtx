@@ -21,12 +21,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.tls.sample.model.ResultState
-import br.tls.twitterktx.api.search.SearchApi
-import br.tls.twitterktx.api.search.model.Twitter
+import br.tls.twitterktx.api.search.factory.AbstractSearchTweetFactory
+import br.tls.twitterktx.api.search.factory.SearchTweetFactory
+import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
+import br.tls.twitterktx.api.search.standard.v1.model.Twitter
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class FirstViewModel constructor(val tweeterApi: SearchApi) : ViewModel() {
+class FirstViewModel constructor(val tweeterTweetServiceImplStandart: StandartSearchTweetServiceImpl) : ViewModel() {
 
     sealed class SearchTweeter {
         class TweetState : SearchTweeter()
@@ -39,7 +41,10 @@ class FirstViewModel constructor(val tweeterApi: SearchApi) : ViewModel() {
     fun searchTrendTweet() {
         viewModelScope.launch {
             try {
-                val tweets = tweeterApi.searchTweeter()
+                val searchTweetFactory = SearchTweetFactory()
+                val standardSearchTweet = searchTweetFactory.createStandardApi(AbstractSearchTweetFactory.ApiVersion.V1_1)
+
+                val tweets = standardSearchTweet.searchTweet("bolsonaro coronavirus")
                 _tweetState.value = ResultState(data = tweets, state = ResultState.Status.SUCCESS)
             } catch (error: Exception) {
                 _tweetState.value = ResultState(error = error,  state = ResultState.Status.ERROR)

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.model
+package br.tls.twitterktx.api.search.standard.v1.model
 
 data class User (
 
@@ -51,7 +51,7 @@ data class User (
     val profile_link_color : String,
     val profile_sidebar_border_color : String,
     val profile_sidebar_fill_color : String,
-    val profile_text_color : Int,
+    val profile_text_color : String,
     val profile_use_background_image : Boolean,
     val has_extended_profile : Boolean,
     val default_profile : Boolean,

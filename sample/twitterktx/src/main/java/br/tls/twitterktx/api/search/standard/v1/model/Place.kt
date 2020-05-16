@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.model
+package br.tls.twitterktx.api.search.standard.v1.model
 
-data class Entities (
+data class Place(
 
-	val description : Description
+    val id: Number,
+    val url: String,
+    val place_type: String,
+    val name: String,
+    val full_name: String,
+    val country_code: String,
+    val country: String
 )
