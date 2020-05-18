@@ -9,5 +9,27 @@
         android:id="@+id/FirstFragment"
         android:name="br.tls.sample.mainsample.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first"/>
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_stepOne"
+            app:destination="@id/step_navigation" />
+    </fragment>
+    <navigation
+        android:id="@+id/step_navigation"
+        app:startDestination="@id/stepOne" >
+        <fragment
+            android:id="@+id/stepOne"
+            android:name="br.tls.sample.stepflow.StepOne"
+            android:label="fragment_step_one"
+            tools:layout="@layout/fragment_step_one">
+            <action
+                android:id="@+id/action_stepOne_to_stepTwo"
+                app:destination="@id/stepTwo" />
+        </fragment>
+        <fragment
+            android:id="@+id/stepTwo"
+            android:name="br.tls.sample.stepflow.StepTwo"
+            android:label="fragment_step_two"
+            tools:layout="@layout/fragment_step_two" />
+    </navigation>
 </navigation>
