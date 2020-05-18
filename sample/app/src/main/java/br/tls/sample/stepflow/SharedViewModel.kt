@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-package br.tls.sample.di
+package br.tls.sample.stepflow
 
-import br.tls.sample.mainsample.FirstViewModel
-import br.tls.sample.stepflow.SharedViewModel
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import android.util.Log
+import androidx.lifecycle.ViewModel
 
-val simpleModule = module {
+class SharedViewModel:ViewModel() {
 
-    single {
-        StandartSearchTweetServiceImpl()
+    var holdedData = mutableListOf<String>()
+
+
+    override fun onCleared() {
+        super.onCleared()
+
+        Log.d("lopes", "call on cleared")
     }
-
-    viewModel {
-        FirstViewModel(tweeterTweetServiceImplStandart = get())
-    }
-
-    viewModel {
-        SharedViewModel()
-    }
-
 }

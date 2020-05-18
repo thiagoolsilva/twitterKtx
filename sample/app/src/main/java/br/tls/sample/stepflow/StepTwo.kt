@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.tls.sample.mainsample
+package br.tls.sample.stepflow
 
 import android.os.Bundle
 import android.util.Log
@@ -22,53 +22,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.tls.sample.R
-import br.tls.sample.model.ResultState
-import kotlinx.android.synthetic.main.fragment_first.*
-import org.koin.android.ext.android.inject
+import br.tls.sample.util.sharedGraphViewModel
+import kotlinx.android.synthetic.main.fragment_step_two.*
 import timber.log.Timber
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment() {
 
-    private val firstViewModel: FirstViewModel by inject()
+/**
+ * A simple [Fragment] subclass.
+ * Use the [StepTwo.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class StepTwo : Fragment() {
+
+    val sharedViewModel:SharedViewModel by sharedGraphViewModel(R.id.step_navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_step_two, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_first.setOnClickListener {
-            goToNavGraphScope()
+        btnOk.setOnClickListener {
+            val userData = editText2.text.toString()
+            sharedViewModel.holdedData.add(userData)
+
+            sharedViewModel.holdedData.forEach {
+                Timber.d("data %s", it)
+            }
+//            findNavController().popBackStack(R.id.FirstFragment, false)
         }
 
-        firstViewModel.tweetState.observe(viewLifecycleOwner, Observer {
-            when (it.state) {
-                ResultState.Status.SUCCESS -> Timber.d("tweet count %d", it.data?.statuses?.size)
-                ResultState.Status.ERROR -> Timber.e(it.error!!)
-            }
-        })
     }
-
-    private fun goToNavGraphScope() {
-        val direction = FirstFragmentDirections.actionFirstFragmentToStepOne()
-        findNavController().navigate(direction)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        firstViewModel.searchTrendTweet()
-    }
-
 }
