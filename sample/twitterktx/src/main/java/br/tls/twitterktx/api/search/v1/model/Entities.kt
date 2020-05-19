@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.authentication
+package br.tls.twitterktx.api.search.v1.model
 
+data class Entities (
 
-class OAuthBearerAuthentication {
-
-}
+	val description : Description
+)

@@ -22,29 +22,25 @@ import br.tls.twitterktx.api.search.factory.product.StandardSearchTweet
 
 interface AbstractSearchTweetFactory {
 
-    enum class ApiVersion {
-        V1_1
-    }
-
     /**
      * Create the standard search tweet API
      * @param apiVersion api version
      * @return a concrete search tweet implementation
      */
-    fun createStandardApi(apiVersion: ApiVersion): StandardSearchTweet
+    fun <T : StandardSearchTweet> createStandardApi(apiType: SearchTweetFactory.ApiType): T
 
     /**
      * Create the premium search tweet API
      * @param apiVersion api version
      * @return a concrete search tweet implementation
      */
-    fun createPremiumApi(apiVersion: ApiVersion): PremiumSearchTweet
+    fun <T : PremiumSearchTweet> createPremiumApi(apiType: SearchTweetFactory.ApiType): T
 
     /**
      * Create the enterprise search tweet API
      * @param apiVersion api version
      * @return a concrete search tweet implementation
      */
-    fun createEnterpriseApi(apiVersion: ApiVersion): EnterpriseSearchTweet
+    fun <T: EnterpriseSearchTweet> createEnterpriseApi(apiType: SearchTweetFactory.ApiType): T
 
 }

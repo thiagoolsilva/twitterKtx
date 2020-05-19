@@ -19,23 +19,43 @@ package br.tls.twitterktx.api.search.factory
 import br.tls.twitterktx.api.search.factory.product.EnterpriseSearchTweet
 import br.tls.twitterktx.api.search.factory.product.PremiumSearchTweet
 import br.tls.twitterktx.api.search.factory.product.StandardSearchTweet
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
+import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Impl
 
-class SearchTweetFactory : AbstractSearchTweetFactory {
+class SearchTweetFactory :
+    AbstractSearchTweetFactory {
 
-    override fun createStandardApi(apiVersion: AbstractSearchTweetFactory.ApiVersion): StandardSearchTweet {
-        when (apiVersion) {
-            AbstractSearchTweetFactory.ApiVersion.V1_1 -> return StandartSearchTweetServiceImpl()
+    enum class ApiType {
+        V1
+    }
+
+    /**
+     * Create the standard search tweet API
+     * @param apiVersion api version
+     * @return a concrete search tweet implementation
+     */
+    override fun <T : StandardSearchTweet> createStandardApi(apiType: ApiType): T {
+        when (apiType) {
+            ApiType.V1 -> return StandartSearchTweetV1Impl() as T
+            else -> throw IllegalArgumentException("Api not supported")
         }
     }
 
-    override fun createPremiumApi(apiVersion: AbstractSearchTweetFactory.ApiVersion): PremiumSearchTweet {
-        throw NotImplementedError("api not implemented")
+    /**
+     * Create the premium search tweet API
+     * @param apiVersion api version
+     * @return a concrete search tweet implementation
+     */
+    override fun <T : PremiumSearchTweet> createPremiumApi(apiType: ApiType): T {
+        throw NotImplementedError("Api not implemented")
     }
 
-    override fun createEnterpriseApi(apiVersion: AbstractSearchTweetFactory.ApiVersion): EnterpriseSearchTweet {
-        throw NotImplementedError("api not implemented")
+    /**
+     * Create the enterprise search tweet API
+     * @param apiVersion api version
+     * @return a concrete search tweet implementation
+     */
+    override fun <T : EnterpriseSearchTweet> createEnterpriseApi(apiType: ApiType): T {
+        throw NotImplementedError("Api not implemented")
     }
-
 
 }

@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-package br.tls.sample.di
+package br.tls.twitterktx.api.search.v1.model
 
-import br.tls.sample.mainsample.FirstViewModel
-import br.tls.sample.stepflow.SharedViewModel
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+data class Metadata (
 
-val simpleModule = module {
-
-    viewModel {
-        FirstViewModel()
-    }
-
-    viewModel {
-        SharedViewModel()
-    }
-
-}
+	val iso_language_code : String,
+	val result_type : String
+)

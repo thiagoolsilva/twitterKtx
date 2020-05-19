@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.oauth2
 
+class OAuth2BearerFactory {
 
-data class Twitter (
+    companion object {
 
-	val statuses : List<Statuses>
-//	val search_metadata : Search_metadata
-)
+        var oauthBearerToken: String? = null
+            set(value) {
+                // TBD
+                field = value
+            }
+
+    }
+
+}

@@ -16,4 +16,4 @@
 
 package br.tls.twitterktx.api.search.factory.product
 
-interface EnterpriseSearchTweet
+interface EnterpriseSearchTweet : PremiumSearchTweet

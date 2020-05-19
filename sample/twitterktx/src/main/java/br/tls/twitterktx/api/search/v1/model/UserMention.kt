@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.search.v1.model
 
-data class Entities (
-
-	val description : Description
+data class UserMention (
+    val screen_name:String,
+    val name:String,
+    val id:Number,
+    val id_str:String
 )

@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1
+package br.tls.twitterktx.api.search.v1.model
 
-import br.tls.twitterktx.api.RetrofitBuilder.retrofitClient
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetApi
 
-object StandartSearchTweetClient {
+data class Twitter (
 
-    internal val searchTweetClient: StandartSearchTweetApi = retrofitClient.create(StandartSearchTweetApi::class.java)
-
-}
+	val statuses : List<Statuses>
+//	val search_metadata : Search_metadata
+)

@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.search.v1.product
 
+import br.tls.twitterktx.api.search.factory.product.StandardSearchTweet
+import br.tls.twitterktx.api.search.v1.model.Twitter
 
-data class Urls (
+interface StandardSearchTweetV1: StandardSearchTweet {
 
-	val url : String,
-	val expanded_url : String,
-	val display_url : String,
-	val indices : List<Int>
-)
+    /**
+     * Returns a collection of relevant Tweets matching a specified query.
+     * @param query A UTF-8, URL-encoded search query of 500 characters maximum, including operators. Queries may additionally be limited by complexity.
+     * @return twitter result
+     */
+    suspend fun searchTweet(query: String,  params: List<Pair<String, Any>>? = null): Twitter
+}

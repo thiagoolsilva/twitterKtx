@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.api
+package br.tls.twitterktx.api.search.v1.standard.api
 
-import br.tls.twitterktx.api.search.factory.product.StandardSearchTweet
-import br.tls.twitterktx.api.search.standard.v1.StandartSearchTweetClient.searchTweetClient
-import br.tls.twitterktx.api.search.standard.v1.model.Twitter
+import br.tls.twitterktx.api.search.v1.model.Twitter
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
-/**
- * Implement the standard API Search tweet.
- * For more details about it go to https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
- */
-class StandartSearchTweetServiceImpl :
-    StandardSearchTweet {
+@JvmSuppressWildcards
+interface StandartSearchTweetV1Api {
 
     companion object PARAMETERS {
+
+        /**
+         * [Required]
+         * A UTF-8, URL-encoded search query of 500 characters maximum,
+         * including operators. Queries may additionally be limited by complexity.
+         *
+         */
+        const val QUERY = "q"
 
         /**
          * Returns tweets by users located within a given radius of the given latitude/longitude.
@@ -40,15 +46,14 @@ class StandartSearchTweetServiceImpl :
          *
          * Ex: 37.781157 or -122.3987201 or mi or km
          */
-        val GEOCODE = "geocode"
-
+        const val GEOCODE = "geocode"
 
         /**
          * Restricts tweets to the given language, given by an ISO 639-1 code. Language detection is best-effort.
          *
          * Ex: eu
          */
-        val LANG = "lang"
+        const val LANG = "lang"
 
         /**
          * Specify the language of the query you are sending (only ja is currently effective).
@@ -56,7 +61,7 @@ class StandartSearchTweetServiceImpl :
          *
          * Ex: ja
          */
-        val LOCALE = "locale"
+        const val LOCALE = "locale"
 
         /**
          * Optional. Specifies what type of search results you would prefer to receive. The current default is "mixed." Valid values include:
@@ -66,7 +71,7 @@ class StandartSearchTweetServiceImpl :
          *
          * Ex; mixed or recent or popular
          */
-        val RESULT_TYPE = "result_type"
+        const val RESULT_TYPE = "result_type"
 
         /**
          * The number of tweets to return per page, up to a maximum of 100.
@@ -74,15 +79,18 @@ class StandartSearchTweetServiceImpl :
          *
          * Ex; 100
          */
-        val COUNT = "count"
+        const val COUNT = "count"
 
-        /**
+        /**suspend fun searchTwitters(
+        @Query(QUERY) query: String,
+        @QueryMap optionalParameter: Map<String, Any>
+    ): Twitter
          * Returns tweets created before the given date. Date should be formatted as YYYY-MM-DD.
          * Keep in mind that the search index has a 7-day limit. In other words, no tweets will be found for a date older than one week.
          *
          * Ex: 2015-07-19
          */
-        val UNTIL = "until"
+        const val UNTIL = "until"
 
         /**
          * Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API.
@@ -90,66 +98,28 @@ class StandartSearchTweetServiceImpl :
          *
          * Ex:12345
          */
-        val SINCE_ID = "since_id"
+        const val SINCE_ID = "since_id"
 
         /**
          * Returns results with an ID less than (that is, older than) or equal to the specified ID.
          *
          * Ex: 54321
          */
-        val MAX_ID = "max_id"
+        const val MAX_ID = "max_id"
 
         /**
          * The entities node will not be included when set to false.
          *
          * Ex: false
          */
-        val INCLUDE_ENTITIES = "include_entities"
+        const val INCLUDE_ENTITIES = "include_entities"
     }
 
-    override suspend fun searchTweet(query: String, params: List<Pair<String, String>>?): Twitter {
-        if (validateParams(params)) {
-            val twitterService = searchTweetClient
-            // use the parameters
-            // TBD
-            return twitterService.searchTwitters(query = query)
-        } else {
-            throw IllegalArgumentException("It was provided invalid parameters.")
-        }
-    }
-
-    /**
-     * Check if was provided valid parameters
-     * @param params optional api parameters
-     * @return true if all optional parameters are valid
-     */
-    private fun validateParams(params: List<Pair<String, String>>?): Boolean {
-        var isValid = false
-
-        params?.let {
-            val validParameters = arrayOf(
-                GEOCODE,
-                LANG,
-                LOCALE,
-                RESULT_TYPE,
-                COUNT,
-                UNTIL,
-                SINCE_ID,
-                MAX_ID,
-                INCLUDE_ENTITIES
-            )
-
-            val (_, rest) = params.partition {
-                it.second.isNotEmpty() &&
-                        validParameters.contains(it.second)
-            }
-
-            isValid = rest.isEmpty()
-        } ?: apply {
-            isValid = true
-        }
-
-        return isValid
-    }
+    @Headers("Authorization:Bearer AAAAAAAAAAAAAAAAAAAAAIwgeAAAAAAAbIa2AfSgnm7JS60iaBTCIAiLXYo%3DvsbsOmA108kFII3HUNLOgyKlCBQbO216nSpLiFKaCVN6XxFRV2")
+    @GET("/1.1/search/tweets.json")
+    suspend fun searchTwitters(
+        @Query(QUERY) query: String,
+        @QueryMap optionalParameter: Map<String, Any>
+    ): Twitter
 
 }

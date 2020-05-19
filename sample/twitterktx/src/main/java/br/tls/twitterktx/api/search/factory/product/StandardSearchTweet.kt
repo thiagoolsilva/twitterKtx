@@ -16,15 +16,4 @@
 
 package br.tls.twitterktx.api.search.factory.product
 
-import br.tls.twitterktx.api.search.standard.v1.model.Twitter
-
-interface StandardSearchTweet {
-
-    /**
-     * Returns a collection of relevant Tweets matching a specified query.
-     * @param query A UTF-8, URL-encoded search query of 500 characters maximum, including operators. Queries may additionally be limited by complexity.
-     * @return twitter result
-     */
-    suspend fun searchTweet(query: String, params: List<Pair<String, String>>? = null): Twitter
-
-}
+interface StandardSearchTweet

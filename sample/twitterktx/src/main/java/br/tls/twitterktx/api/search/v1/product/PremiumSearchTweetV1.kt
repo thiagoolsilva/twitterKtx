@@ -14,17 +14,8 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.search.v1.product
 
-data class Search_metadata (
+import br.tls.twitterktx.api.search.factory.product.PremiumSearchTweet
 
-	val completed_in : Double,
-	val max_id : Int,
-	val max_id_str : Int,
-	val next_results : String,
-	val query : String,
-	val refresh_url : String,
-	val count : Int,
-	val since_id : Int,
-	val since_id_str : Int
-)
+interface PremiumSearchTweetV1 : PremiumSearchTweet

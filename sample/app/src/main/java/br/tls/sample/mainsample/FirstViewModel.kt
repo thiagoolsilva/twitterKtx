@@ -21,14 +21,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.tls.sample.model.ResultState
-import br.tls.twitterktx.api.search.factory.AbstractSearchTweetFactory
 import br.tls.twitterktx.api.search.factory.SearchTweetFactory
-import br.tls.twitterktx.api.search.standard.v1.api.StandartSearchTweetServiceImpl
-import br.tls.twitterktx.api.search.standard.v1.model.Twitter
+import br.tls.twitterktx.api.search.v1.model.Twitter
+import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api
+import br.tls.twitterktx.api.search.v1.product.StandardSearchTweetV1
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class FirstViewModel constructor(val tweeterTweetServiceImplStandart: StandartSearchTweetServiceImpl) : ViewModel() {
+class FirstViewModel :
+    ViewModel() {
 
     sealed class SearchTweeter {
         class TweetState : SearchTweeter()
@@ -38,16 +38,22 @@ class FirstViewModel constructor(val tweeterTweetServiceImplStandart: StandartSe
     val tweetState: LiveData<ResultState<Twitter>>
         get() = _tweetState
 
-    fun searchTrendTweet() {
+    fun searchTrendTweet(query: String) {
         viewModelScope.launch {
             try {
-                val searchTweetFactory = SearchTweetFactory()
-                val standardSearchTweet = searchTweetFactory.createStandardApi(AbstractSearchTweetFactory.ApiVersion.V1_1)
+                val standardSearchTweet =
+                    SearchTweetFactory().createStandardApi<StandardSearchTweetV1>(
+                        SearchTweetFactory.ApiType.V1
+                    )
 
-                val tweets = standardSearchTweet.searchTweet("bolsonaro coronavirus")
+                val tweets = standardSearchTweet.searchTweet(
+                    query, mutableListOf(
+                        StandartSearchTweetV1Api.COUNT to 20
+                    )
+                )
                 _tweetState.value = ResultState(data = tweets, state = ResultState.Status.SUCCESS)
             } catch (error: Exception) {
-                _tweetState.value = ResultState(error = error,  state = ResultState.Status.ERROR)
+                _tweetState.value = ResultState(error = error, state = ResultState.Status.ERROR)
             }
         }
     }

@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.search.v1.standard
 
-data class UserMention (
-    val screen_name:String,
-    val name:String,
-    val id:Number,
-    val id_str:String
-)
+import br.tls.twitterktx.api.RetrofitBuilder.Companion.retrofitClient
+import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api
+
+object StandartSearchTweetClient {
+
+    internal val SEARCH_TWEET_V_1_API_CLIENT: StandartSearchTweetV1Api = retrofitClient.create(StandartSearchTweetV1Api::class.java)
+
+}

@@ -22,29 +22,30 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+class RetrofitBuilder {
 
-object RetrofitBuilder {
+    companion object {
 
-    internal val retrofitClient = Retrofit.Builder()
-        .baseUrl(BuildConfig.TWITTER_BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(configLogging())
-        .build()
+        internal val retrofitClient = Retrofit.Builder()
+            .baseUrl(BuildConfig.TWITTER_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(configLogging())
+            .build()
 
-    /**
-     * Config logging level
-     */
-    private fun configLogging(): OkHttpClient {
-        val httpClient = OkHttpClient.Builder()
+        /**
+         * Config logging level
+         */
+        private fun configLogging(): OkHttpClient {
+            val httpClient = OkHttpClient.Builder()
 
-        if (BuildConfig.DEBUG) {
-            val logging = HttpLoggingInterceptor()
+            if (BuildConfig.DEBUG) {
+                val logging = HttpLoggingInterceptor()
 
-            logging.level = HttpLoggingInterceptor.Level.BODY
-            httpClient.addInterceptor(logging)
+                logging.level = HttpLoggingInterceptor.Level.BASIC
+                httpClient.addInterceptor(logging)
+            }
+
+            return httpClient.build()
         }
-
-        return httpClient.build()
     }
-
 }

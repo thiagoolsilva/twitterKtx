@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.standard.v1.model
+package br.tls.twitterktx.api.search.v1.product
 
-data class Metadata (
+import br.tls.twitterktx.api.search.factory.product.EnterpriseSearchTweet
 
-	val iso_language_code : String,
-	val result_type : String
-)
+interface EnterpriseSearchTweetV1 : EnterpriseSearchTweet

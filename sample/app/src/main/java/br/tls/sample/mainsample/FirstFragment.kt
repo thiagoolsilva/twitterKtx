@@ -17,7 +17,6 @@
 package br.tls.sample.mainsample
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.tls.sample.R
 import br.tls.sample.model.ResultState
+import br.tls.twitterktx.api.search.v1.model.Twitter
 import kotlinx.android.synthetic.main.fragment_first.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -52,23 +52,34 @@ class FirstFragment : Fragment() {
             goToNavGraphScope()
         }
 
+        searchTweet.setOnClickListener {
+            val tweetData = search_tweet.text.toString()
+            firstViewModel.searchTrendTweet(tweetData)
+
+            search_tweet.text.clear()
+        }
+
         firstViewModel.tweetState.observe(viewLifecycleOwner, Observer {
             when (it.state) {
-                ResultState.Status.SUCCESS -> Timber.d("tweet count %d", it.data?.statuses?.size)
-                ResultState.Status.ERROR -> Timber.e(it.error!!)
+                ResultState.Status.SUCCESS -> handleTweets(it.data)
+                    ResultState.Status.ERROR
+                -> Timber.e(it.error!!)
             }
         })
+    }
+
+    private fun handleTweets(data: Twitter?) {
+        data?.let {
+            Timber.d("tweet count %d", it.statuses.size)
+            it.statuses.forEach {
+                Timber.d("message [%s]", it.text)
+            }
+        }
     }
 
     private fun goToNavGraphScope() {
         val direction = FirstFragmentDirections.actionFirstFragmentToStepOne()
         findNavController().navigate(direction)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        firstViewModel.searchTrendTweet()
     }
 
 }
