@@ -16,14 +16,12 @@
 
 package br.tls.twitterktx.api.search.v1.model
 
-data class Place(
-
-    val id: String,
-    val url: String,
-    val place_type: String,
-    val name: String,
-    val full_name: String,
-    val country_code: String,
-    val country: String,
-    val bounding_box: BoundingBox
+data class GeoData (
+    val country:String,
+    val country_code:String,
+    val locality:String,
+    val region:String,
+    val sub_region:String,
+    val full_name:String,
+    val geo: List<GeoLocation>
 )

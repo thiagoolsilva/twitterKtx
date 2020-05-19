@@ -12,4 +12,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="oauth2_bearer_token">oauth2 bearer token</string>
+    <string name="search_tweeter">search tweeter</string>
+    <string name="set_token">set token</string>
 </resources>

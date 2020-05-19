@@ -20,5 +20,5 @@ package br.tls.twitterktx.api.search.v1.model
 data class Twitter (
 
 	val statuses : List<Statuses>
-//	val search_metadata : Search_metadata
+
 )

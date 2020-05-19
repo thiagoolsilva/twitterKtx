@@ -17,35 +17,42 @@
 package br.tls.twitterktx.api
 
 import br.tls.twitterktx.BuildConfig
+import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitBuilder {
+class RetrofitBuilder constructor(val oAuth2BearerAuth: Oauth2BearerAuth) {
 
-    companion object {
+    internal val retrofitClient = Retrofit.Builder()
+        .baseUrl(BuildConfig.TWITTER_BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(configInterceptor())
+        .build()
 
-        internal val retrofitClient = Retrofit.Builder()
-            .baseUrl(BuildConfig.TWITTER_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(configLogging())
-            .build()
-
-        /**
-         * Config logging level
-         */
-        private fun configLogging(): OkHttpClient {
-            val httpClient = OkHttpClient.Builder()
-
-            if (BuildConfig.DEBUG) {
-                val logging = HttpLoggingInterceptor()
-
-                logging.level = HttpLoggingInterceptor.Level.BASIC
-                httpClient.addInterceptor(logging)
-            }
-
-            return httpClient.build()
+    /**
+     * Config interceptor
+     */
+    private fun configInterceptor(): OkHttpClient {
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor {
+            val original = it.request()
+            val request = original.newBuilder()
+                .header("Authorization", "Bearer ".plus(oAuth2BearerAuth.oauth2BearerToken))
+                .header("Content-Type", "application/json")
+                .method(original.method(), original.body())
+                .build()
+            it.proceed(request)
         }
+
+        if (BuildConfig.DEBUG) {
+            val logging = HttpLoggingInterceptor()
+
+            logging.level = HttpLoggingInterceptor.Level.BODY
+            httpClient.addInterceptor(logging)
+        }
+
+        return httpClient.build()
     }
 }

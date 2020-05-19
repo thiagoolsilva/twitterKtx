@@ -16,11 +16,10 @@
 
 package br.tls.twitterktx.api.search.v1.model
 
+data class Size (
 
-data class Urls (
+    val w:Int,
+    val h:Int,
+    val resize:String
 
-	val url : String,
-	val expanded_url : String,
-	val display_url : String,
-	val indices : List<Int>
 )

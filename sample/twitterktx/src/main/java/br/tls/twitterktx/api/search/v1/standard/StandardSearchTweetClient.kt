@@ -14,28 +14,14 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.di
+package br.tls.twitterktx.api.search.v1.standard
 
 import br.tls.twitterktx.api.RetrofitBuilder
-import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
-import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
-import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.bind
-import org.koin.dsl.module
+import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api
 
-val twitterKtxModule = module {
+class StandardSearchTweetClient(val retrofitBuilder: RetrofitBuilder) {
 
-    single {
-        OAuth2BearerFactory(context = androidContext())
-    } bind Oauth2BearerAuth::class
-
-    single {
-        RetrofitBuilder(oAuth2BearerAuth = get())
-    }
-
-    single {
-        StandardSearchTweetClient(retrofitBuilder = get())
-    }
+    internal val SEARCH_TWEET_V_1_API_CLIENT: StandartSearchTweetV1Api =
+        retrofitBuilder.retrofitClient.create(StandartSearchTweetV1Api::class.java)
 
 }

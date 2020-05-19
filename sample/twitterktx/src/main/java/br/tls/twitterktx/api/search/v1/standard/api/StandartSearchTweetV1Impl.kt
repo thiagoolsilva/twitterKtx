@@ -17,7 +17,6 @@
 package br.tls.twitterktx.api.search.v1.standard.api
 
 import br.tls.twitterktx.api.search.v1.model.Twitter
-import br.tls.twitterktx.api.search.v1.standard.StandartSearchTweetClient.SEARCH_TWEET_V_1_API_CLIENT
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.COUNT
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.GEOCODE
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.INCLUDE_ENTITIES
@@ -28,6 +27,8 @@ import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PAR
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.SINCE_ID
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.UNTIL
 import br.tls.twitterktx.api.search.v1.product.StandardSearchTweetV1
+import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
+import org.koin.java.KoinJavaComponent.inject
 
 /**
  * Implement tbr.tls.sample.utilhe standard API Search tweet.
@@ -36,9 +37,11 @@ import br.tls.twitterktx.api.search.v1.product.StandardSearchTweetV1
 internal class StandartSearchTweetV1Impl :
     StandardSearchTweetV1 {
 
+    val standardSearchTweetClient by inject(StandardSearchTweetClient::class.java)
+
     override suspend fun searchTweet(query: String, params: List<Pair<String, Any>>?): Twitter {
         if (validateParams(params)) {
-            val twitterService = SEARCH_TWEET_V_1_API_CLIENT
+            val twitterService = standardSearchTweetClient.SEARCH_TWEET_V_1_API_CLIENT
             val queryMap = mutableMapOf<String, Any>()
             params?.let {
                 it.forEach {

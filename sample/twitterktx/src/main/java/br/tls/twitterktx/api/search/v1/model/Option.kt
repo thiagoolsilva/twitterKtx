@@ -16,9 +16,9 @@
 
 package br.tls.twitterktx.api.search.v1.model
 
-data class Description (
+data class Option (
 
-	val user_mention:List<UserMention>?,
-	val urls : List<Url>?
+    val position: Number,
+    val text: String
 
 )

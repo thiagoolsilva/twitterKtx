@@ -16,15 +16,9 @@
 
 package br.tls.twitterktx.api.search.v1.model
 
-data class Search_metadata (
+data class Rule (
 
-	val completed_in : Double,
-	val max_id : Int,
-	val max_id_str : Int,
-	val next_results : String,
-	val query : String,
-	val refresh_url : String,
-	val count : Int,
-	val since_id : Int,
-	val since_id_str : Int
+    val tag:String,
+    val id:Number,
+    val id_str:String
 )

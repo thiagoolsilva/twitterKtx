@@ -16,14 +16,8 @@
 
 package br.tls.twitterktx.api.search.v1.model
 
-data class Place(
+data class Poll (
 
-    val id: String,
-    val url: String,
-    val place_type: String,
-    val name: String,
-    val full_name: String,
-    val country_code: String,
-    val country: String,
-    val bounding_box: BoundingBox
+    val options : List<Option>
+
 )

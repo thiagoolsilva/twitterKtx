@@ -21,12 +21,24 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
-class OAuth2BearerFactory constructor(val context: Context) {
+class OAuth2BearerFactory constructor(private val context: Context) : Oauth2BearerAuth {
 
     private companion object {
         const val FILE_NAME = "encrypted_files"
         const val KEY_OAUTH = "oauth"
     }
+
+    override var oauth2BearerToken: String
+        get() {
+            val invalidTokenValue = ""
+            val keyValue = encryptedSharedPreferences.getString(KEY_OAUTH, invalidTokenValue)
+
+            return keyValue
+                ?: throw IllegalArgumentException("The oauth2 bearer token value does not exist")
+        }
+        set(value) {
+            encryptedSharedPreferences.edit().putString(KEY_OAUTH, value).apply()
+        }
 
     private val encryptedSharedPreferences: SharedPreferences
         get() {
@@ -43,14 +55,5 @@ class OAuth2BearerFactory constructor(val context: Context) {
                 )
         }
 
-    var oauthBearerToken: String
-        get() {
-            val keyValue = encryptedSharedPreferences.getString(KEY_OAUTH, "")
-
-            return keyValue ?: ""
-        }
-        set(value) {
-            encryptedSharedPreferences.edit().putString(KEY_OAUTH, value).apply()
-        }
 
 }

@@ -18,5 +18,11 @@ package br.tls.twitterktx.api.search.v1.model
 
 data class Entities (
 
-	val description : Description
+	val hashtags: List<HashTag>,
+	val media:List<Media>,
+	val urls: List<Url>,
+	val user_mentions: List<UserMention>,
+	val symbols: List<Symbol>,
+	val polls: List<Poll>
+
 )

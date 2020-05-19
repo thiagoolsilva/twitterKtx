@@ -17,8 +17,9 @@
 package br.tls.twitterktx.api.search.v1.model
 
 data class UserMention (
-    val screen_name:String,
-    val name:String,
     val id:Number,
-    val id_str:String
+    val id_str:String,
+    val indices:List<Int>,
+    val name:String,
+    val screen_name:String
 )
