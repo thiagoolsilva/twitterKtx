@@ -118,7 +118,6 @@ interface StandartSearchTweetV1Api {
         const val INCLUDE_ENTITIES = "include_entities"
     }
 
-//    @Headers("Authorization:Bearer AAAAAAAAAAAAAAAAAAAAAIwgeAAAAAAAbIa2AfSgnm7JS60iaBTCIAiLXYo%3DvsbsOmA108kFII3HUNLOgyKlCBQbO216nSpLiFKaCVN6XxFRV2")
     @GET("/1.1/search/tweets.json")
     suspend fun searchTwitters(
         @Query(QUERY) query: String,
