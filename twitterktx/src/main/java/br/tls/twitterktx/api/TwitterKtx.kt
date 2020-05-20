@@ -41,21 +41,6 @@ class TwitterKtx {
             }
 
         /**
-         * Init twitter ktx dependencies
-         * @param context application context
-         */
-        fun init(context: Context) {
-            startKoin {
-                androidContext(context)
-                modules(
-                    listOf(
-                        twitterKtxModule
-                    )
-                )
-            }
-        }
-
-        /**
          * Config oauth2 bearer token
          * @param token token
          */
