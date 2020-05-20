@@ -16,16 +16,19 @@
 
 package br.tls.twitterktx.api
 
+import android.content.Context
 import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.java.KoinJavaComponent.inject
 
 class TwitterKtx {
 
-    private val oauth2BearerAuth: Oauth2BearerAuth by inject(OAuth2BearerFactory::class.java)
-
     companion object {
+
+        private val oauth2BearerAuth: Oauth2BearerAuth by inject(OAuth2BearerFactory::class.java)
 
         /**
          * Get a instance of twitter Ktx module to be used on Koin configuration
@@ -35,14 +38,29 @@ class TwitterKtx {
                 return br.tls.twitterktx.api.di.twitterKtxModule
             }
 
-    }
+        /**
+         * Init twitter ktx dependencies
+         * @param context application context
+         */
+        fun init(context: Context) {
+            startKoin {
+                androidContext(context)
+                modules(
+                    listOf(
+                        twitterKtxModule
+                    )
+                )
+            }
+        }
 
-    /**
-     * Config oauth2 bearer token
-     * @param token token
-     */
-    fun configToken(token: String) {
-        oauth2BearerAuth.oauth2BearerToken = token
+        /**
+         * Config oauth2 bearer token
+         * @param token token
+         */
+        fun configToken(token: String) {
+            oauth2BearerAuth.oauth2BearerToken = token
+        }
+
     }
 
 }

@@ -52,7 +52,7 @@ class FirstFragment : Fragment() {
         btnSendToken.setOnClickListener {
             val tokenAuth = edtOauth2BearerToken.text.toString()
             if(tokenAuth.isNotEmpty()) {
-                TwitterKtx().configToken(tokenAuth)
+                TwitterKtx.configToken(tokenAuth)
                 Snackbar.make(parent, "The OAuth2BearerToken was successfully set", Snackbar.LENGTH_LONG).show()
             } else {
                 Snackbar.make(parent, "It is not possible to set empty OAuth2BearerToken", Snackbar.LENGTH_LONG).show()
