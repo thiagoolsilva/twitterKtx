@@ -21,7 +21,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
-class OAuth2BearerFactory constructor(private val context: Context) : Oauth2BearerAuth {
+internal class OAuth2BearerFactory constructor(private val context: Context) : Oauth2BearerAuth {
 
     private companion object {
         const val FILE_NAME = "encrypted_files"

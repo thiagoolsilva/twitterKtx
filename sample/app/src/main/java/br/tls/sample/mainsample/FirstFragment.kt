@@ -24,7 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.tls.sample.R
 import br.tls.sample.model.ResultState
-import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
+import br.tls.twitterktx.api.TwitterKtx
 import br.tls.twitterktx.api.search.v1.model.Twitter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -36,7 +36,6 @@ import timber.log.Timber
  */
 class FirstFragment : Fragment() {
 
-    private val oAuth2BearerFactory:OAuth2BearerFactory by inject()
     private val firstViewModel: FirstViewModel by inject()
 
     override fun onCreateView(
@@ -53,7 +52,7 @@ class FirstFragment : Fragment() {
         btnSendToken.setOnClickListener {
             val tokenAuth = edtOauth2BearerToken.text.toString()
             if(tokenAuth.isNotEmpty()) {
-                oAuth2BearerFactory.oauth2BearerToken = tokenAuth
+                TwitterKtx().configToken(tokenAuth)
                 Snackbar.make(parent, "The OAuth2BearerToken was successfully set", Snackbar.LENGTH_LONG).show()
             } else {
                 Snackbar.make(parent, "It is not possible to set empty OAuth2BearerToken", Snackbar.LENGTH_LONG).show()

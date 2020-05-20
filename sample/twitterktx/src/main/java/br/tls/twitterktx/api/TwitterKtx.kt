@@ -14,33 +14,35 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.di
+package br.tls.twitterktx.api
 
-import br.tls.twitterktx.api.RetrofitBuilder
-import br.tls.twitterktx.api.TwitterKtx
 import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
-import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.bind
-import org.koin.dsl.module
+import org.koin.core.module.Module
+import org.koin.java.KoinJavaComponent.inject
 
-internal val twitterKtxModule = module {
+class TwitterKtx {
 
-    single {
-        OAuth2BearerFactory(context = androidContext())
-    } bind Oauth2BearerAuth::class
+    private val oauth2BearerAuth: Oauth2BearerAuth by inject(OAuth2BearerFactory::class.java)
 
-    single {
-        RetrofitBuilder(oAuth2BearerAuth = get())
+    companion object {
+
+        /**
+         * Get a instance of twitter Ktx module to be used on Koin configuration
+         */
+        val twitterKtxModule: Module
+            get() {
+                return br.tls.twitterktx.api.di.twitterKtxModule
+            }
+
     }
 
-    single {
-        StandardSearchTweetClient(retrofitBuilder = get())
-    }
-
-    single {
-        TwitterKtx()
+    /**
+     * Config oauth2 bearer token
+     * @param token token
+     */
+    fun configToken(token: String) {
+        oauth2BearerAuth.oauth2BearerToken = token
     }
 
 }
