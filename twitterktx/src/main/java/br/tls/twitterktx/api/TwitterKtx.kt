@@ -17,13 +17,12 @@
 package br.tls.twitterktx.api
 
 import android.content.Context
+import br.tls.twitterktx.api.di.twitterKtxModule
 import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
-import org.koin.core.module.Module
 import org.koin.java.KoinJavaComponent.inject
 
 class TwitterKtx {
@@ -33,12 +32,23 @@ class TwitterKtx {
         private val oauth2BearerAuth: Oauth2BearerAuth by inject(OAuth2BearerFactory::class.java)
 
         /**
-         * Get a instance of twitter Ktx module to be used on Koin configuration
+         * Load koin modules using Global Context
          */
-        val twitterKtxModule: Module
-            get() {
-                return br.tls.twitterktx.api.di.twitterKtxModule
+        fun init(context:Context) {
+            startKoin {
+                // declare used Android context
+                androidContext(context)
+                // declare modules
+                modules(twitterKtxModule)
             }
+        }
+
+        /**
+         * Load koin modules using Global Context
+         */
+        fun initKoinDependencies() {
+            loadKoinModules(twitterKtxModule)
+        }
 
         /**
          * Config oauth2 bearer token

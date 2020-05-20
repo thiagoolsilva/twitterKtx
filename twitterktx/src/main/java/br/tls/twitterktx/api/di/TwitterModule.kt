@@ -27,11 +27,6 @@ import org.koin.dsl.bind
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
-internal val twitterKtxKoinModule = koinApplication {
-    // declare used modules
-    modules(twitterKtxModule)
-}
-
 internal val twitterKtxModule = module {
 
     single {

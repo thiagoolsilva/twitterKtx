@@ -1,6 +1,7 @@
 package br.tls.myapplication
 
 import android.app.Application
+import br.tls.twitterktx.BuildConfig
 import br.tls.twitterktx.api.TwitterKtx
 import timber.log.Timber
 
