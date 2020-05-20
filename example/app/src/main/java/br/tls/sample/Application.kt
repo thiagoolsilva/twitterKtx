@@ -18,7 +18,6 @@ package br.tls.sample
 
 import android.app.Application
 import br.tls.sample.di.simpleModule
-import br.tls.twitterktx.api.TwitterKtx
 import br.tls.twitterktx.api.TwitterKtx.Companion.twitterKtxModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

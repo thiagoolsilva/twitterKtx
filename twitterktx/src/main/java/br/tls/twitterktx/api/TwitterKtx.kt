@@ -20,7 +20,9 @@ import android.content.Context
 import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.core.module.Module
 import org.koin.java.KoinJavaComponent.inject
 

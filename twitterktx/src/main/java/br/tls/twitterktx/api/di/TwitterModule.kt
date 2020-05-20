@@ -22,8 +22,15 @@ import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
 import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.KoinApplication
 import org.koin.dsl.bind
+import org.koin.dsl.koinApplication
 import org.koin.dsl.module
+
+internal val twitterKtxKoinModule = koinApplication {
+    // declare used modules
+    modules(twitterKtxModule)
+}
 
 internal val twitterKtxModule = module {
 
