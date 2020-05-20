@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class Option (
-
-    val position: Number,
-    val text: String
-
+data class Coordinates (
+    val coordinates: List<Float>,
+    val type:String
 )

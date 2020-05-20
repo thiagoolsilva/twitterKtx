@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class GeoData (
-    val country:String,
-    val country_code:String,
-    val locality:String,
-    val region:String,
-    val sub_region:String,
-    val full_name:String,
-    val geo: List<GeoLocation>
+data class Metadata (
+
+	val iso_language_code : String,
+	val result_type : String
 )

@@ -14,15 +14,10 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class Entities (
-
-	val hashtags: List<HashTag>,
-	val media:List<Media>,
-	val urls: List<Url>,
-	val user_mentions: List<UserMention>,
-	val symbols: List<Symbol>,
-	val polls: List<Poll>
-
+data class BoundingBox(
+    //TBD Issue: The lib GSON is not performing properly this deserialization process
+//    val coordinates: List<List<Double>>,
+    val type: String
 )

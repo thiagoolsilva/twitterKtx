@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import br.tls.myapplication.R
 import br.tls.sample.model.ResultState
 import br.tls.twitterktx.api.TwitterKtx
-import br.tls.twitterktx.api.search.v1.model.Twitter
+import br.tls.twitterktx.api.search.model.Twitter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_first.*
 import timber.log.Timber

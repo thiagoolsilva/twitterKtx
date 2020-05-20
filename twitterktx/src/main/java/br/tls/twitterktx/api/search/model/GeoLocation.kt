@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class Symbol (
-
-    val indices:List<Int>,
-    val text:String
-
+data class GeoLocation (
+    val type: String,
+    val coordinates: List<Number>
 )

@@ -16,7 +16,7 @@
 
 package br.tls.twitterktx.api.search.v1.standard.api
 
-import br.tls.twitterktx.api.search.v1.model.Twitter
+import br.tls.twitterktx.api.search.model.Twitter
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.COUNT
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.GEOCODE
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.INCLUDE_ENTITIES

@@ -17,7 +17,7 @@
 package br.tls.twitterktx.api.search.v1.product
 
 import br.tls.twitterktx.api.search.factory.product.StandardSearchTweet
-import br.tls.twitterktx.api.search.v1.model.Twitter
+import br.tls.twitterktx.api.search.model.Twitter
 
 interface StandardSearchTweetV1: StandardSearchTweet {
 

@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class Size (
+data class Rule (
 
-    val w:Int,
-    val h:Int,
-    val resize:String
-
+    val tag:String,
+    val id:Number,
+    val id_str:String
 )

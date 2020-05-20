@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
 /**
  * The user twitter representation. For more details about it go to https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/user-object

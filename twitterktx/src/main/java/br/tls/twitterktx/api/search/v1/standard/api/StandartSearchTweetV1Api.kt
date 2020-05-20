@@ -16,12 +16,8 @@
 
 package br.tls.twitterktx.api.search.v1.standard.api
 
-import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
-import br.tls.twitterktx.api.search.v1.model.Twitter
-import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent.inject
+import br.tls.twitterktx.api.search.model.Twitter
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 

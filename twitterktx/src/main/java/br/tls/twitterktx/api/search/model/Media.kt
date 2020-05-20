@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-
-data class Twitter (
-
-	val statuses : List<Statuses>
+data class Media (
+    val display_url:String,
+    val expanded_url:String,
+    val id:Number,
+    val id_str:String,
+    val indices:List<Int>,
+    val media_url:String,
+    val media_url_https:String,
+//    val sizes:
+    val source_status_id:Number?,
+    val source_status_id_str:String?,
+    val type:String,
+    val url:String
 
 )

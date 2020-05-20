@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class Metadata (
-
-	val iso_language_code : String,
-	val result_type : String
+data class Url (
+    val display_url:String,
+    val expanded_url:String,
+    val indices:List<Number>,
+    val url:String
 )

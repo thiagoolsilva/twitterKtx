@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.model
+package br.tls.twitterktx.api.search.model
 
-data class BoundingBox(
-    //TBD Issue: The lib GSON is not performing properly this deserialization process
-//    val coordinates: List<List<Double>>,
-    val type: String
+data class Option (
+
+    val position: Number,
+    val text: String
+
 )
