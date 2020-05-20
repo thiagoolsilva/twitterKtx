@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api
+package br.tls.twitterktx.api.search.v1
 
 import br.tls.twitterktx.BuildConfig
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth

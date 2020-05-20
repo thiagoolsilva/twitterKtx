@@ -27,7 +27,7 @@ import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PAR
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.SINCE_ID
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.UNTIL
 import br.tls.twitterktx.api.search.v1.product.StandardSearchTweetV1
-import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
+import br.tls.twitterktx.api.search.v1.standard.client.StandardSearchTweetClient
 import org.koin.java.KoinJavaComponent.inject
 
 /**

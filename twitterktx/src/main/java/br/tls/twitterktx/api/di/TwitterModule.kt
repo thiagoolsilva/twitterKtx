@@ -16,15 +16,13 @@
 
 package br.tls.twitterktx.api.di
 
-import br.tls.twitterktx.api.RetrofitBuilder
+import br.tls.twitterktx.api.search.v1.RetrofitBuilder
 import br.tls.twitterktx.api.TwitterKtx
 import br.tls.twitterktx.api.oauth2.OAuth2BearerFactory
 import br.tls.twitterktx.api.oauth2.Oauth2BearerAuth
-import br.tls.twitterktx.api.search.v1.standard.StandardSearchTweetClient
+import br.tls.twitterktx.api.search.v1.standard.client.StandardSearchTweetClient
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.KoinApplication
 import org.koin.dsl.bind
-import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
 internal val twitterKtxModule = module {
@@ -38,7 +36,9 @@ internal val twitterKtxModule = module {
     }
 
     single {
-        StandardSearchTweetClient(retrofitBuilder = get())
+        StandardSearchTweetClient(
+            retrofitBuilder = get()
+        )
     }
 
     single {

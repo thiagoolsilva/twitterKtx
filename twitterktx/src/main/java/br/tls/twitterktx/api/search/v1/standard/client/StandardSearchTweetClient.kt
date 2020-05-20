@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package br.tls.twitterktx.api.search.v1.standard
+package br.tls.twitterktx.api.search.v1.standard.client
 
-import br.tls.twitterktx.api.RetrofitBuilder
+import br.tls.twitterktx.api.search.v1.RetrofitBuilder
 import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api
 
 class StandardSearchTweetClient(val retrofitBuilder: RetrofitBuilder) {
