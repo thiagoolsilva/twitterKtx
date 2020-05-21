@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="br.tls.sample.mainsample.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_stepOne"
+            app:destination="@id/step_navigation" />
+    </fragment>
+    <navigation
+        android:id="@+id/step_navigation"
+        app:startDestination="@id/stepOne" >
+        <fragment
+            android:id="@+id/stepOne"
+            android:name="br.tls.sample.stepflow.StepOne"
+            android:label="fragment_step_one"
+            tools:layout="@layout/fragment_step_one">
+            <action
+                android:id="@+id/action_stepOne_to_stepTwo"
+                app:destination="@id/stepTwo" />
+        </fragment>
+        <fragment
+            android:id="@+id/stepTwo"
+            android:name="br.tls.sample.stepflow.StepTwo"
+            android:label="fragment_step_two"
+            tools:layout="@layout/fragment_step_two" />
+    </navigation>
+</navigation>

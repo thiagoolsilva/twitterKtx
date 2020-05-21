@@ -1,0 +1,4 @@
+rootProject.name='Sample'
+include ':app'
+include ':twitterktx'
+project(":twitterktx").projectDir = new File('./../twitterktx')

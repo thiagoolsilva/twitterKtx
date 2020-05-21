@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="oauth2_bearer_token">oauth2 bearer token</string>
+    <string name="search_tweeter">search tweeter</string>
+    <string name="set_token">set token</string>
+</resources>

@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "br.tls.sample"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+// To inline the bytecode built with JVM target 1.8 into
+// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':twitterktx')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
+
+    implementation "androidx.appcompat:appcompat:${apt_compat_version}"
+    implementation "androidx.core:core-ktx:${core_ktx_version}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraint_layout_version}"
+    implementation "androidx.navigation:navigation-ui-ktx:${navigation_version}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${navigation_version}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${viewmodel_version}"
+
+    implementation "org.koin:koin-core:${koin_version}"
+    implementation "org.koin:koin-android:${koin_version}"
+    implementation "org.koin:koin-android-viewmodel:${koin_version}"
+    implementation "com.jakewharton.timber:timber:${timber_version}"
+
+    testImplementation 'junit:junit:4.12'
+}
