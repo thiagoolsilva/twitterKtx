@@ -17,11 +17,11 @@
 package br.tls.twitterktx.api.search.v1.standard.client
 
 import br.tls.twitterktx.api.search.v1.RetrofitBuilder
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api
 
 class StandardSearchTweetClient(val retrofitBuilder: RetrofitBuilder) {
 
-    internal val SEARCH_TWEET_V_1_API_CLIENT: StandartSearchTweetV1Api =
-        retrofitBuilder.retrofitClient.create(StandartSearchTweetV1Api::class.java)
+    internal val SEARCH_TWEET_V_1_API_CLIENT: StandardSearchTweetV1Api =
+        retrofitBuilder.retrofitClient.create(StandardSearchTweetV1Api::class.java)
 
 }
