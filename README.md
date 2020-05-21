@@ -39,8 +39,8 @@ This project brings to table set of best practices, tools, and solutions:
 
 ## What this project does not cover?
 
-This project does not cover others API rather then [standard Search Tweets](https://developer.twitter.com/en/docs/tweets/search/overview/standard).
- 
+This project cover only the api [standard Search Tweets](https://developer.twitter.com/en/docs/tweets/search/overview/standard). It is expected in the future to implement other API.
+
  ## Do you want to contribute?
 
  I'd love if you contribute. Go ahead and give it a try to check our [documentation]()
@@ -75,7 +75,6 @@ twitterktx_version = '1.0.0-beta-1'
 ### Command-line + Android Studio
 
 1. Run `git clone https://github.com/thiagoolsilva/twitterKtx`
-
 
 ### Importing the lib on Android Studio
 
