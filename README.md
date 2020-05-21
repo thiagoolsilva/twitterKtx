@@ -126,8 +126,6 @@ You can check it out this code on [Application](https://github.com/thiagoolsilva
 
 1. First of all, you must get a valid oauth2bearer token running the follow `curl` code. 
 
-The INSERT_YOUR_TOKEN_HERE  is a token in base64 composed by consumer key and secret. For more details go to [twitter](https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0)
-
 
 ```
 curl -X POST \
@@ -136,6 +134,10 @@ curl -X POST \
   -H 'cache-control: no-cache' 
   -H 'content-type: application/x-www-form-urlencoded;charset=UTF-8'
 ```
+
+~~~
+The INSERT_YOUR_TOKEN_HERE  is a token in base64 composed by consumer key and secret. For more details go to [twitter](https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0)
+~~~
 
 It will return something like this:
 
@@ -149,7 +151,7 @@ It will return something like this:
  
 2. Provide a valid oauth2 bearer token to library calling the function ` TwitterKtx.configToken(tokenAuth)`
 
-For more details about it you can go to [FirstFragment](https://github.com/thiagoolsilva/twitterKtx/blob/feature_crypto_readme/example/app/src/main/java/br/tls/sample/mainsample/FirstFragment.kt)
+For more details about it you can go to [FirstFragment](https://github.com/thiagoolsilva/twitterKtx/blob/master/example/app/src/main/java/br/tls/sample/mainsample/FirstFragment.kt)
 
 
 ## Using the library
