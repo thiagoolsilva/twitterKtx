@@ -47,9 +47,9 @@ This project does not cover others API rather then [standard Search Tweets](http
 
 ## Setup
 
-### Create the required properties file
+### Create the required twitter.properties file
 
-In order to library works property you must create a new file named twitter.properties on root folder with the key baseUrl.
+In order to the library works properly you must create a new file named twitter.properties on root folder with the key baseUrl.
 
 ```
 // file project/twitter.properties
