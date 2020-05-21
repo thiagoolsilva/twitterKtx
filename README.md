@@ -100,6 +100,40 @@ I'd love if you contribute with the upcoming features or bug fixes. Go ahead and
 
 You can check it out for new features on [github](https://github.com/thiagoolsilva/twitterKtx/issues?q=is%3Aopen+is%3Aissue+label%3Aupcoming).
 
+
+## How to use the library
+
+
+1. As the library uses coroutines, you must create a coroutine context to use it. To use it into ViewModel you can get the follow code:
+
+```
+viewModelScope.launch {
+
+        ...
+}
+```
+
+Don't forget to get the library `implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$2.3.0-alpha02"`
+
+
+2. Create a new instance of API library
+
+```
+ val standardSearchTweet = SearchTweetFactory().createStandardApi<StandardSearchTweetV1>(SearchTweetFactory.ApiType.V1)
+ ```
+
+2. Call the API providing the required and optional parameters.
+
+```
+val tweets = standardSearchTweet.searchTweet(
+                    query, mutableListOf(
+                        StandartSearchTweetV1Api.COUNT to 20
+                    )
+                )
+```
+
+
+
 ## Author
 
 <img src="misc/myAvatar.png" width="40"/>

@@ -17,15 +17,15 @@
 package br.tls.twitterktx.api.search.v1.standard.api
 
 import br.tls.twitterktx.api.search.model.Twitter
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.COUNT
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.GEOCODE
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.INCLUDE_ENTITIES
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.LANG
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.LOCALE
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.MAX_ID
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.RESULT_TYPE
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.SINCE_ID
-import br.tls.twitterktx.api.search.v1.standard.api.StandartSearchTweetV1Api.PARAMETERS.UNTIL
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.COUNT
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.GEOCODE
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.INCLUDE_ENTITIES
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.LANG
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.LOCALE
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.MAX_ID
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.RESULT_TYPE
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.SINCE_ID
+import br.tls.twitterktx.api.search.v1.standard.api.StandardSearchTweetV1Api.PARAMETERS.UNTIL
 import br.tls.twitterktx.api.search.v1.product.StandardSearchTweetV1
 import br.tls.twitterktx.api.search.v1.standard.client.StandardSearchTweetClient
 import org.koin.java.KoinJavaComponent.inject

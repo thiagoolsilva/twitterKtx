@@ -22,7 +22,7 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 @JvmSuppressWildcards
-interface StandartSearchTweetV1Api {
+interface StandardSearchTweetV1Api {
 
     companion object PARAMETERS {
 
