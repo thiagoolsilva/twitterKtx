@@ -41,10 +41,6 @@ This project brings to table set of best practices, tools, and solutions:
 
 This project cover only the api [standard Search Tweets](https://developer.twitter.com/en/docs/tweets/search/overview/standard). It is expected in the future to implement other API.
 
- ## Do you want to contribute?
-
- I'd love if you contribute. Go ahead and give it a try to check our [documentation]()
-
 ## Setup
 
 ### Create the required twitter.properties file
