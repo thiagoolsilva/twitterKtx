@@ -41,9 +41,9 @@ This project brings to table set of best practices, tools, and solutions:
 
 This project cover only the api [standard Search Tweets](https://developer.twitter.com/en/docs/tweets/search/overview/standard). It is expected in the future to implement other API.
 
-## Setup
+# Setup
 
-### Create the required twitter.properties file
+## Create the required twitter.properties file
 
 In order to the library works properly you must create a new file named twitter.properties on root folder with the key baseUrl.
 
@@ -56,7 +56,7 @@ baseUrl="https://api.twitter.com/"
 
 There are a few ways to open this project.
 
-## Current Version
+### Current Version
 
 ```gradle
 // latest stable
@@ -84,23 +84,44 @@ project(":twitterktx").projectDir = new File('TWITTERKTX_FOLDER')
  implementation project(path: ':twitterktx')
 ```
 
-## Features
+# QuickStart
 
-This section is related to the features/bug fixes of project.
+## Starting library
 
-### Do you want to contribute?
+Init the twitterKtx in an application Android class.
 
-I'd love if you contribute with the upcoming features or bug fixes. Go ahead and read the [CONTRIBUTING](CONTRIBUTING.md) file.
+~~~
+There is two approach to do it on Application class.
+~~~
 
-### Upcoming features
+1. If you Koin as your dependency inject, you must use the code `TwitterKtx.initKoinDependencies()` after call `startKoin{}`.
 
-You can check it out for new features on [github](https://github.com/thiagoolsilva/twitterKtx/issues?q=is%3Aopen+is%3Aissue+label%3Aupcoming).
+```
+ override fun onCreate() {
+    startKoin{
+        ...
+    }
+    TwitterKtx.initKoinDependencies()
+ }
+```
+
+You can check it out this code on [Application](https://github.com/thiagoolsilva/twitterKtx/blob/master/example/app/src/main/java/br/tls/sample/Application.kt)
 
 
-## How to use the library
+2. If you don't use Koin as your dependency inject, you must use the code `TwitterKtx.init(this@Application)`.
+
+```
+override fun onCreate() {
+    super.onCreate()
+    TwitterKtx.init(this@Application)
+ }
+
+```
+
+You can check it out this code on [Application](https://github.com/thiagoolsilva/twitterKtx/blob/master/example-withou-di/app/src/main/java/br/tls/myapplication/Application.kt)
 
 
-### Config Oauth2 bearer token
+## Config Oauth2 bearer token
 
 
 1. First of all, you must get a valid oauth2bearer token running the follow `curl` code. 
@@ -126,44 +147,14 @@ It will return something like this:
 
 ```
  
-2. Init the twitterKtx
-
-There are two approach to do it on Application class.
-
-1. If you Koin as your dependency inject, you must use the code `TwitterKtx.initKoinDependencies()` after call `startKoin{}` on onCreate function.
-
-```
- override fun onCreate() {
-    startKoin{
-        ...
-    }
-    TwitterKtx.initKoinDependencies()
- }
-```
-
-You can check it out this code on [Application](https://github.com/thiagoolsilva/twitterKtx/blob/master/example/app/src/main/java/br/tls/sample/Application.kt)
-
-
-2. If you don't use Koin as your dependency inject, you must use the code `TwitterKtx.init(this@Application)` on onCreate function.
-
-```
-override fun onCreate() {
-    super.onCreate()
-    TwitterKtx.init(this@Application)
- }
-
-```
-
-You can check it out this code on [Application](https://github.com/thiagoolsilva/twitterKtx/blob/master/example-withou-di/app/src/main/java/br/tls/myapplication/Application.kt)
-
- 
-
-4. Provide the token to library calling the function ` TwitterKtx.configToken(tokenAuth)`
+2. Provide a valid oauth2 bearer token to library calling the function ` TwitterKtx.configToken(tokenAuth)`
 
 For more details about it you can go to [FirstFragment](https://github.com/thiagoolsilva/twitterKtx/blob/feature_crypto_readme/example/app/src/main/java/br/tls/sample/mainsample/FirstFragment.kt)
 
 
-5. As the library uses coroutines, you must create a coroutine context to use it. In order to exemplify you can do it on Fragment as shown below.
+## Using the library
+
+1. As the library uses coroutines, you must create a coroutine context to use it. In order to exemplify you can do it on Fragment as shown below.
 
 ```
 viewModelScope.launch {
@@ -175,13 +166,13 @@ viewModelScope.launch {
 Don't forget to get the library `implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$2.3.0-alpha02"`
 
 
-6. Create a new instance of API library
+2. Create a new instance of API library
 
 ```
  val standardSearchTweet = SearchTweetFactory().createStandardApi<StandardSearchTweetV1>(SearchTweetFactory.ApiType.V1)
  ```
 
-7. Call the API providing the required and optional parameters.
+3. Call the API providing the required and optional parameters.
 
 ```
 val tweets = standardSearchTweet.searchTweet(
@@ -191,9 +182,21 @@ val tweets = standardSearchTweet.searchTweet(
                 )
 ```
 
-8. Get the results. Happy coding! :D
+4. Get the results. Happy coding! :D
 
-## Author
+# Features
+
+This section is related to the features/bug fixes of project.
+
+## Do you want to contribute?
+
+I'd love if you contribute with the upcoming features or bug fixes. Go ahead and read the [CONTRIBUTING](CONTRIBUTING.md) file.
+
+## Upcoming features
+
+You can check it out for new features on [github](https://github.com/thiagoolsilva/twitterKtx/issues?q=is%3Aopen+is%3Aissue+label%3Aupcoming).
+
+# Author
 
 <img src="misc/myAvatar.png" width="40"/>
 
