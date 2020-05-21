@@ -41,6 +41,9 @@ This project brings to table set of best practices, tools, and solutions:
 
 This project does not cover others API rather then [standard Search Tweets](https://developer.twitter.com/en/docs/tweets/search/overview/standard).
  
+ ## Do you want to contribute?
+
+ I'd love if you contribute. Go ahead and give it a try to check our [documentation]()
 
 ## Setup
 
@@ -55,22 +58,48 @@ baseUrl="https://api.twitter.com/"
 
 ## Gradle 
 
+There are a few ways to open this project.
+
 ## Current Version
 
 ```gradle
 // latest stable
-twitterktx_version = '1.0.0'
+twitterktx_version = '1.0.0-beta-1'
 ```
-### Jcenter 
 
-Check that you have the `jcenter` repository. 
+### Android Studio
 
-```gradle
-// Add Jcenter to your repositories if needed
-repositories {
-	jcenter()    
-}
+1. Android Studio -> File -> New -> From Version control -> Git
+2. Enter `https://github.com/thiagoolsilva/twitterKtx` into URL field
+
+### Command-line + Android Studio
+
+1. Run `git clone https://github.com/thiagoolsilva/twitterKtx`
+
+
+### Importing the lib on Android Studio
+
+1. With your project opened, go to settings.gradle file and insert the follow code
 ```
+include ':twitterktx'
+project(":twitterktx").projectDir = new File('TWITTERKTX_FOLDER')
+```
+2. Finally, go to your preference module and insert the follow code to use the library on it
+```
+ implementation project(path: ':twitterktx')
+```
+
+## Features
+
+This section is related to the features/bug fixes of project.
+
+### Do you want to contribute?
+
+I'd love if you contribute with the upcoming features or bug fixes. Go ahead and read the [CONTRIBUTING](CONTRIBUTING.md) file.
+
+### Upcoming features
+
+You can check it out for new features on [github](https://github.com/thiagoolsilva/twitterKtx/issues?q=is%3Aopen+is%3Aissue+label%3Aupcoming).
 
 ## Author
 
